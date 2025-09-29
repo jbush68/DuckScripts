@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-    "final_space": true,
+    "final_space": false,
     "version": 3,
     "blocks": [
         {
@@ -12,13 +12,13 @@
                     "style": "plain",
                     "foreground": "default",
                     "background": "default",
-                    "template": " \u250C\u2524{{ if .SSHSession }}<lightBlue,>\u2666</>{{ else }}<red,>\u2666</>{{ end }}{{ .HostName }} <background,white>\u258C</>"
+                    "template": "\u250C\u2524{{ if .SSHSession }}<lightBlue,>\u2666</>{{ else }}<red,>\u2666</>{{ end }} {{ .HostName }} <parentBackground,parentForeground>\u258C</>"
                 },
                 {
                     "type": "path",
                     "style": "plain",
                     "foreground": "black",
-                    "background": "white",
+                    "background": "lightWhite",
                     "properties": {
                         "folder_separator_icon": " ",
                         "folder_icon": "\u25BA",
@@ -39,7 +39,8 @@
                     ],
                     "template": "Git: {{ .HEAD }}",
                     "properties": {
-                        "fetch_status": true
+                        "fetch_status": true,
+                        "branch_icon": ""
                     }
                 }
             ]
@@ -52,10 +53,15 @@
                 {
                     "type": "session",
                     "style": "plain",
-                    "foreground": "magenta",
-                    "template": "\u2514\u2524{{ .UserName }}\u251C\u2500<red,>\u00BB</>"
+                    "foreground": "default",
+                    "template": "\u2514\u2524<magenta,>{{ .UserName }}</>\u251C\u2500<red,>\u00BB</>"
                 }
             ]
         }
-    ]
+    ],
+    "transient_prompt": {
+        "foreground": "default",
+        "background": "default",
+        "template": "{{ if .Segments.Status.Error }}<lightWhite,red>{{ .Segments.Status.Code }}</>{{ else }} {{ end }}\u251C\u2500<red,>\u00BB</>"
+    }
 }
