@@ -1,0 +1,56 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "final_space": true,
+    "version": 3,
+    "transient_prompt": {
+        "foreground": "default",
+        "background": "default",
+        "template": " \u251C\u2500<lightRed,>\u00BB</> {{ if .Segments.Status.Error }}<lightRed,black>{{ .Segments.Time.CurrentDate | date '15:05:05.000' }}{{ else }}<lightBlue,>{{ .Segments.Time.CurrentDate | date '15:04:05.000' }}</>{{ end }} <lightRed,>\u00BB</>"
+    },
+    "blocks": [
+        {
+            "type": "prompt",
+            "alignment": "left",
+            "segments": [
+                {
+                    "type": "session",
+                    "style": "plain",
+                    "foreground": "default",
+                    "background": "default",
+                    "template": "\u250C\u2524 {{ if .SSHSession }}<lightBlue,>\u2666</>{{ else }}<red,>\u2666</>{{ end }} {{ .HostName }}"
+                },
+                {
+                    "type": "path",
+                    "style": "plain",
+                    "background": "darkGray",
+                    "foreground": "lightWhite",
+                    "template": "<parentBackground,background>\u2593\u2592\u2591</>{{ .Path }}",
+                    "properties": {
+                        "folder_separator_icon": " ",
+                        "folder_icon": "\u25BA",
+                        "style": "agnoster"
+                    }
+                },
+                {
+                    "type": "status",
+                    "style": "plain",
+                    "foreground": "black",
+                    "background_templates": [
+                        "{{ if .Error }}lightRed{{ else }}lightGreen{{ end }}"
+                    ],
+                    "properties": {
+                        "always_enabled": true,
+                        "status_separator": "\u007E",
+                        "status_template": "{{ if eq .Code 0 }}\u0000 0{{ else }}\u0000 {{ .Code }}{{ end }}"
+                    }
+                },
+                {
+                    "type": "text",
+                    "style": "plain",
+                    "background": "default",
+                    "template": "<parentBackground,background>\u2593\u2592\u2591</>"
+                }
+            ]
+        }
+    ]
+}
